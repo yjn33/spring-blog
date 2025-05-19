@@ -5,6 +5,7 @@ import com.example.blog.domain.article.dto.request.ArticleRequestDto;
 import com.example.blog.domain.article.dto.response.ArticleResponseDto;
 import com.example.blog.domain.article.entity.Article;
 import com.example.blog.domain.article.service.ArticleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ArticleController {
 		게시물 저장
 	*/
 	@PostMapping("/v1/articles")
-	public ResponseEntity<Article> saveArticle(@RequestBody ArticleRequestDto articleRequestDto) {
+	public ResponseEntity<Article> saveArticle(@Valid @RequestBody ArticleRequestDto articleRequestDto) {
 		Article savedArticle = articleService.saveArticle(articleRequestDto);
 
 		return ResponseEntity.status(HttpStatus.CREATED)
