@@ -5,6 +5,7 @@ import com.example.blog.domain.article.dto.request.ArticleRequestDto;
 import com.example.blog.domain.article.dto.response.ArticleResponseDto;
 import com.example.blog.domain.article.entity.Article;
 import com.example.blog.domain.article.repository.ArticleRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,11 @@ public class ArticleService {
 		return articleRepository.save(articleRequestDto.toEntity());
 	}
 
+	/*
+		모든 글 목록 조회 메서드
+	*/
+	public List<Article> findAllArticles() {
+		return articleRepository.findAll();
+	}
 
 }
