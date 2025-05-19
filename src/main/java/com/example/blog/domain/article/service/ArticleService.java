@@ -38,4 +38,11 @@ public class ArticleService {
 			.orElseThrow(() -> new IllegalArgumentException(articleId + "의 값에 해당하는 게시물을 찾지 못하였습니다"));
 	}
 
+	/*
+		게시글 삭제 메서드
+	*/
+	public void deleteArticle(Long articleId) {
+		articleRepository.deleteById(articleId);
+	}
+
 }

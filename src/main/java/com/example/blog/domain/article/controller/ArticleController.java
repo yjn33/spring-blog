@@ -10,6 +10,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +61,16 @@ public class ArticleController {
 			.body(new ArticleResponseDto(article));
 	}
 
+	/*
+		특정 게시물 삭제 기능
+	*/
+	@DeleteMapping("/v1/articles/{id}")
+	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Long articleId) {
+		articleService.deleteArticle(articleId);
+
+		return ResponseEntity.ok()
+			.build();
+	}
 
 
 }
