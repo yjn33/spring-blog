@@ -2,9 +2,11 @@ package com.example.blog.domain.article.service;
 
 
 import com.example.blog.domain.article.dto.request.ArticleRequestDto;
+import com.example.blog.domain.article.dto.request.UpdateArticleReqeustDto;
 import com.example.blog.domain.article.dto.response.ArticleResponseDto;
 import com.example.blog.domain.article.entity.Article;
 import com.example.blog.domain.article.repository.ArticleRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,16 @@ public class ArticleService {
 	*/
 	public void deleteArticle(Long articleId) {
 		articleRepository.deleteById(articleId);
+	}
+
+	@Transactional
+	public Article updateArticle(Long articleId, UpdateArticleReqeustDto reqeustDto) {
+		Article article = articleRepository.findById(articleId)
+			.orElseThrow(() -> new IllegalArgumentException(articleId + "값에 해당 게시글은 없습니다"));
+
+		article.update(reqeustDto.getTitle(), reqeustDto.getContent());
+
+		return article;
 	}
 
 }

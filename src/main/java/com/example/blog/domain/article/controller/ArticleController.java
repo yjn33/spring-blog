@@ -2,18 +2,21 @@ package com.example.blog.domain.article.controller;
 
 
 import com.example.blog.domain.article.dto.request.ArticleRequestDto;
+import com.example.blog.domain.article.dto.request.UpdateArticleReqeustDto;
 import com.example.blog.domain.article.dto.response.ArticleResponseDto;
 import com.example.blog.domain.article.entity.Article;
 import com.example.blog.domain.article.service.ArticleService;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,6 +73,20 @@ public class ArticleController {
 
 		return ResponseEntity.ok()
 			.build();
+	}
+
+	/*
+		게시글 수정 기능
+	*/
+	@PutMapping("/v1/articles/{id}")
+	public ResponseEntity<Article> updateArticle(
+		@PathVariable("id") Long articleId,
+		@Valid @RequestBody UpdateArticleReqeustDto reqeustDto) {
+
+		Article updatedArticle = articleService.updateArticle(articleId, reqeustDto);
+
+		return ResponseEntity.ok()
+			.body(updatedArticle);
 	}
 
 
