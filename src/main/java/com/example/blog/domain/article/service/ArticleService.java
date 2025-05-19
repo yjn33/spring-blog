@@ -30,4 +30,12 @@ public class ArticleService {
 		return articleRepository.findAll();
 	}
 
+	/*
+		id 값을 조회하여 게시글 조회
+	*/
+	public Article findArticleById(Long articleId) {
+		return articleRepository.findById(articleId)
+			.orElseThrow(() -> new IllegalArgumentException(articleId + "의 값에 해당하는 게시물을 찾지 못하였습니다"));
+	}
+
 }
