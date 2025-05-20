@@ -3,7 +3,6 @@ package com.example.blog.domain.article.service;
 
 import com.example.blog.domain.article.dto.request.ArticleRequestDto;
 import com.example.blog.domain.article.dto.request.UpdateArticleReqeustDto;
-import com.example.blog.domain.article.dto.response.ArticleResponseDto;
 import com.example.blog.domain.article.entity.Article;
 import com.example.blog.domain.article.repository.ArticleRepository;
 import jakarta.transaction.Transactional;
@@ -47,6 +46,9 @@ public class ArticleService {
 		articleRepository.deleteById(articleId);
 	}
 
+	/*
+		게시글 수정 메서드
+	*/
 	@Transactional
 	public Article updateArticle(Long articleId, UpdateArticleReqeustDto reqeustDto) {
 		Article article = articleRepository.findById(articleId)

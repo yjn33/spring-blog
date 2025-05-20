@@ -1,7 +1,7 @@
 package com.example.blog.domain.article.entity;
 
 
-import com.example.blog.global.common.entity.BaseEntity;
+import com.example.blog.global.common.base.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
